@@ -1,5 +1,161 @@
+
 <!DOCTYPE html>
- <html lang="en"> 
-   <head>
-     <meta charset="UTF-8">
-     
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEEVA AI</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #101827;
+  color: white;
+}
+
+header {
+  background: #17243a;
+  padding: 22px;
+  text-align: center;
+  border-bottom: 1px solid #34445d;
+}
+
+header h1 {
+  color: #42d9c8;
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  color: #b8c5d8;
+}
+
+.container {
+  max-width: 650px;
+  margin: 35px auto;
+  padding: 20px;
+}
+
+.welcome {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.welcome h2 {
+  font-size: 25px;
+}
+
+.chat {
+  background: #1c2a40;
+  border-radius: 15px;
+  padding: 20px;
+  min-height: 250px;
+}
+
+#messages {
+  min-height: 150px;
+}
+
+.message {
+  background: #30415c;
+  padding: 12px;
+  border-radius: 10px;
+  margin: 10px 0;
+  overflow-wrap: anywhere;
+}
+
+.input-area {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+}
+
+button {
+  background: #42d9c8;
+  color: #102030;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  color: #9baabd;
+  padding: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>JEEVA AI</h1>
+  <p>Your Personal AI Assistant</p>
+</header>
+
+<div class="container">
+
+  <div class="welcome">
+    <h2>Welcome to JEEVA AI</h2>
+    <p>നമസ്കാരം! എനിക്ക് നിങ്ങളെ എങ്ങനെ സഹായിക്കാനാകും?</p>
+  </div>
+
+  <div class="chat">
+    <div id="messages">
+      <div class="message">
+        JEEVA AI-ലേക്ക് സ്വാഗതം! നിങ്ങളുടെ ചോദ്യം താഴെ എഴുതൂ.
+      </div>
+    </div>
+
+    <div class="input-area">
+      <input id="userInput" type="text"
+      placeholder="Type your message...">
+
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 JEEVA AI
+</footer>
+
+<script>
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const messages = document.getElementById("messages");
+
+  if (input.value.trim() === "") return;
+
+  const msg = document.createElement("div");
+  msg.className = "message";
+  msg.textContent = "You: " + input.value;
+  messages.appendChild(msg);
+
+  const reply = document.createElement("div");
+  reply.className = "message";
+  reply.textContent = "JEEVA AI: നിങ്ങളുടെ സന്ദേശം ലഭിച്ചു. യഥാർത്ഥ AI കണക്ഷൻ ഉടൻ ചേർക്കും.";
+  messages.appendChild(reply);
+
+  input.value = "";
+}
+</script>
+
+</body>
+</html>
