@@ -5,12 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JEEVA AI</title>
-
 <style>
-* {
-  box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -18,82 +14,122 @@ body {
   color: white;
   text-align: center;
 }
-
 header {
-  padding: 30px 15px;
+  padding: 22px;
   background: #17243a;
 }
-
-h1 {
-  color: #42d9c8;
-  font-size: 38px;
-}
-
+h1 { color: #42d9c8; }
 .container {
-  padding: 50px 20px;
+  max-width: 650px;
+  margin: auto;
+  padding: 35px 20px;
 }
-
-h2 {
-  font-size: 28px;
-}
-
-p {
-  color: #c5d2e3;
-  font-size: 17px;
-  line-height: 1.8;
-}
-
+p { color: #c5d2e3; line-height: 1.8; }
 button {
   background: #42d9c8;
+  color: #102030;
   border: none;
-  padding: 14px 28px;
+  padding: 13px 22px;
   border-radius: 10px;
-  font-size: 17px;
   font-weight: bold;
-  margin-top: 20px;
   cursor: pointer;
 }
-
+#chatScreen { display: none; }
+.chatbox {
+  background: #1c2a40;
+  padding: 15px;
+  border-radius: 15px;
+  min-height: 280px;
+}
+#messages {
+  min-height: 180px;
+  text-align: left;
+}
+.message {
+  background: #30415c;
+  padding: 12px;
+  border-radius: 10px;
+  margin: 10px 0;
+  overflow-wrap: anywhere;
+}
+.input-area {
+  display: flex;
+  gap: 8px;
+}
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px;
+  border-radius: 9px;
+  border: none;
+  font-size: 16px;
+}
 footer {
-  margin-top: 60px;
-  padding: 20px;
+  padding: 25px;
   color: #9baabd;
 }
 </style>
 </head>
-
 <body>
-
 <header>
-  <h1>JEEVA AI</h1>
-  <p>Your Personal AI Assistant</p>
+<h1>JEEVA AI</h1>
+<p>Your Personal AI Assistant</p>
 </header>
 
-<div class="container">
-
-  <h2>Welcome to JEEVA AI ❤️</h2>
-
-  <p>നമസ്കാരം!</p>
-
-  <p>
-    JEEVA AI-ലേക്ക് സ്വാഗതം.
-    നിങ്ങളുടെ സ്വന്തം AI Assistant.
-  </p>
-
-  <p>
-    മലയാളത്തിലും English-ലും
-    നിങ്ങൾക്ക് ചോദ്യങ്ങൾ ചോദിക്കാം.
-  </p>
-
-  <button onclick="alert('Welcome to JEEVA AI!')">
-    Get Started
-  </button>
-
+<div class="container" id="homeScreen">
+<h2>Welcome to JEEVA AI ❤️</h2>
+<p>നമസ്കാരം! JEEVA AI-ലേക്ക് സ്വാഗതം.</p>
+<p>നിങ്ങളുടെ സ്വന്തം AI Assistant.</p>
+<p>മലയാളത്തിലും English-ലും ചോദ്യങ്ങൾ ചോദിക്കാം.</p>
+<button onclick="startChat()">Let's Start</button>
 </div>
 
-<footer>
-  © 2026 JEEVA AI
-</footer>
+<div class="container" id="chatScreen">
+<h2>JEEVA AI Chat</h2>
+<div class="chatbox">
+<div id="messages">
+<div class="message">JEEVA AI: നമസ്കാരം! എന്താണ് അറിയേണ്ടത്?</div>
+</div>
+<div class="input-area">
+<input id="userInput" placeholder="നിങ്ങളുടെ ചോദ്യം എഴുതുക...">
+<button onclick="sendMessage()">Send</button>
+</div>
+</div>
+<br>
+<button onclick="goHome()">Back</button>
+</div>
 
+<footer>© 2026 JEEVA AI</footer>
+
+<script>
+function startChat() {
+document.getElementById("homeScreen").style.display = "none";
+document.getElementById("chatScreen").style.display = "block";
+}
+
+function goHome() {
+document.getElementById("chatScreen").style.display = "none";
+document.getElementById("homeScreen").style.display = "block";
+}
+
+function sendMessage() {
+const input = document.getElementById("userInput");
+const messages = document.getElementById("messages");
+
+if (!input.value.trim()) return;
+
+const user = document.createElement("div");
+user.className = "message";
+user.textContent = "You: " + input.value;
+messages.appendChild(user);
+
+const reply = document.createElement("div");
+reply.className = "message";
+reply.textContent = "JEEVA AI: നിങ്ങളുടെ സന്ദേശം ലഭിച്ചു. യഥാർത്ഥ AI കണക്ഷൻ അടുത്ത ഘട്ടത്തിൽ ചേർക്കാം.";
+messages.appendChild(reply);
+
+input.value = "";
+}
+</script>
 </body>
 </html>
